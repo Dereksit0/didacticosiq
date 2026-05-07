@@ -2,13 +2,14 @@ import ScrollReveal from "./ScrollReveal";
 import { WA_LINK, MAPS_LINK, CATALOG_LINK } from "@/lib/constants";
 
 const hours = [
-  { day: "Lunes – Viernes", time: "8:30 am – 5:00 pm" },
+  { day: "Lunes – Viernes", time: "8:30 am – 6:00 pm" },
   { day: "Sábado", time: "8:30 am – 3:00 pm" },
   { day: "Domingo", time: "Cerrado" },
 ];
 
 const contactItems = [
-  { icon: "📱", label: "WhatsApp", value: "+52 220 179 2153", href: WA_LINK },
+  { icon: "📱", label: "WhatsApp Menudeo", value: "+52 220 179 2153", href: WA_LINK },
+  { icon: "📞", label: "Teléfono Mayoreo", value: "222 231 4611", href: "tel:+522222314611" },
   { icon: "📍", label: "Ubicación", value: "Ver en Google Maps", href: MAPS_LINK },
   { icon: "📖", label: "Catálogo", value: "Descargar PDF 2026", href: CATALOG_LINK },
 ];

@@ -11,17 +11,17 @@ const benefits = [
   },
   {
     emoji: "👩‍🏫",
-    title: "Asesoría Pedagógica",
+    title: "Asesoría Profesional",
     description:
-      "Nuestro equipo te orienta para elegir el material más adecuado según la edad y las necesidades específicas de cada niño.",
+      "Nuestro equipo te orienta para elegir el material más adecuado según la edad y las necesidades específicas de cada persona, desde bebés hasta adultos.",
     color: "#4db8ff",
     bgColor: "#dbeafe",
   },
   {
-    emoji: "🛡️",
-    title: "Alta Durabilidad",
+    emoji: "🏅",
+    title: "Calidad y Garantía",
     description:
-      "Fabricados con materiales resistentes al uso intensivo en aulas y consultorios. Una inversión que dura años.",
+      "Fabricados con materiales de alta calidad, resistentes al uso intensivo en aulas, terapias y hogar. Productos con garantía respaldada.",
     color: "#ff8c42",
     bgColor: "#ffedd5",
   },
@@ -57,7 +57,7 @@ export default function BenefitsSection() {
             </h2>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
               Más de 15 años siendo la opción preferida de maestros, terapeutas
-              y directores en toda la república mexicana.
+              y directores en toda la república mexicana. Material para todas las edades.
             </p>
           </div>
         </ScrollReveal>

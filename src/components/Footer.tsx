@@ -123,9 +123,10 @@ export default function Footer() {
               Contacto
             </h4>
             <ul className="space-y-1.5 text-white/65 text-sm">
-              <li>📱 +52 220 179 2153</li>
-              <li>🕐 Lun–Vie: 9am – 7pm</li>
-              <li>🕐 Sáb: 9am – 4pm</li>
+              <li>📱 Menudeo: +52 220 179 2153</li>
+              <li>📞 Mayoreo: 222 231 4611</li>
+              <li>🕐 Lun–Vie: 8:30am – 6pm</li>
+              <li>🕐 Sáb: 8:30am – 3pm</li>
             </ul>
           </div>
         </div>

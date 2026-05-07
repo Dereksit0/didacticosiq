@@ -80,8 +80,9 @@ export default function HeroSection() {
 
           <p className="text-white/80 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
             Material didáctico especializado para{" "}
-            <strong className="text-white">escuelas, consultorios y especialistas</strong>.
-            Precios de mayoreo con envíos a todo México.
+            <strong className="text-white">todas las edades</strong> — escuelas, consultorios,
+            terapeutas, padres de familia y público en general.
+            Mayoreo y menudeo con envíos a todo México.
           </p>
 
           {/* CTAs */}
