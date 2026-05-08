@@ -1,4 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
+import MobileCarousel from "./MobileCarousel";
 
 const benefits = [
   {
@@ -63,9 +64,9 @@ export default function BenefitsSection() {
         </ScrollReveal>
 
         {/* Benefit cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MobileCarousel gapClass="gap-6" gridClass="sm:grid sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((b, idx) => (
-            <ScrollReveal key={b.title} delay={idx * 100}>
+            <ScrollReveal key={b.title} delay={idx * 100} className="w-[85vw] max-w-[85vw] sm:w-auto sm:max-w-none shrink-0 snap-center h-full">
               <div className="card-hover bg-white rounded-3xl p-7 text-center shadow-lg h-full flex flex-col">
                 <div
                   className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-5 shadow-inner"
@@ -82,7 +83,7 @@ export default function BenefitsSection() {
               </div>
             </ScrollReveal>
           ))}
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );

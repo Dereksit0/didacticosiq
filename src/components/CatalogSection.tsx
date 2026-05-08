@@ -1,4 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
+import MobileCarousel from "./MobileCarousel";
 import { CATALOG_LINK } from "@/lib/constants";
 
 // Catálogo DidacticosIQ – ya tenemos el link en constants
@@ -83,9 +84,9 @@ export default function CatalogSection() {
         </ScrollReveal>
 
         {/* Catalog grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <MobileCarousel gapClass="gap-8" gridClass="sm:grid sm:grid-cols-2 lg:grid-cols-3">
           {catalogs.map((cat, idx) => (
-            <ScrollReveal key={cat.id} delay={idx * 120}>
+            <ScrollReveal key={cat.id} delay={idx * 120} className="min-w-[85vw] sm:min-w-0 snap-center shrink-0">
               <a
                 href={cat.link}
                 target="_blank"
@@ -188,7 +189,7 @@ export default function CatalogSection() {
               </a>
             </ScrollReveal>
           ))}
-        </div>
+        </MobileCarousel>
 
         {/* Bottom text */}
         <ScrollReveal>

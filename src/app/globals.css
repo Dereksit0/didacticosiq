@@ -148,3 +148,12 @@ body {
 .gallery-cell:hover .gallery-bg {
   transform: scale(1.08);
 }
+
+/* ── Hide scrollbar for horizontal scrolling ── */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,5 +1,6 @@
 "use client";
 import ScrollReveal from "./ScrollReveal";
+import MobileCarousel from "./MobileCarousel";
 import { WA_LINK } from "@/lib/constants";
 
 const WA_MAYOREO =
@@ -30,9 +31,9 @@ export default function WholesaleRetailSection() {
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <MobileCarousel gapClass="gap-6" gridClass="md:grid md:grid-cols-2 md:gap-8 lg:gap-12">
           {/* ── MAYOREO ── */}
-          <ScrollReveal>
+          <ScrollReveal className="w-[85vw] max-w-[85vw] sm:w-[400px] sm:max-w-[400px] md:w-auto md:max-w-none shrink-0 snap-center">
             <div
               className="relative rounded-3xl overflow-hidden shadow-2xl h-full"
               style={{
@@ -112,7 +113,7 @@ export default function WholesaleRetailSection() {
           </ScrollReveal>
 
           {/* ── MENUDEO ── */}
-          <ScrollReveal delay={150}>
+          <ScrollReveal delay={150} className="w-[85vw] max-w-[85vw] sm:w-[400px] sm:max-w-[400px] md:w-auto md:max-w-none shrink-0 snap-center">
             <div
               className="relative rounded-3xl overflow-hidden shadow-2xl h-full"
               style={{
@@ -192,7 +193,7 @@ export default function WholesaleRetailSection() {
               </div>
             </div>
           </ScrollReveal>
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );
