@@ -88,13 +88,11 @@ export default function HeroSection() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href={CATALOG_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#catalogo"
               className="btn-bounce inline-flex items-center justify-center gap-3 bg-[#ffb800] text-[#002e2e] font-black text-base px-7 py-4 rounded-2xl shadow-xl hover:bg-[#ffc933] hover:shadow-2xl hover:-translate-y-1 transition-all"
             >
               <span className="text-xl">📚</span>
-              DESCARGAR CATÁLOGO 2026
+              Ver catálogos
             </a>
             <a
               href={WA_LINK}

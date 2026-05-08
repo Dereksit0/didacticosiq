@@ -1,5 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
-import { WA_LINK } from "@/lib/constants";
+import { WA_LINK, WA_MAYOREO_LINK } from "@/lib/constants";
 
 const categories = [
   {
@@ -11,6 +11,7 @@ const categories = [
     items: ["Mobiliario de aula", "Juegos de patio", "Material Montessori", "Recursos visuales"],
     accent: "#ff4757",
     lightBg: "#fff5f5",
+    link: WA_LINK,
   },
   {
     emoji: "🧠",
@@ -21,6 +22,7 @@ const categories = [
     items: ["Terapia Ocupacional", "Psicopedagogía", "Terapia de Lenguaje", "Estimulación Temprana"],
     accent: "#4db8ff",
     lightBg: "#f0f8ff",
+    link: WA_LINK,
   },
   {
     emoji: "📦",
@@ -31,6 +33,7 @@ const categories = [
     items: ["Precios de mayoreo", "Pedidos por volumen", "Asesoría comercial", "Facturación"],
     accent: "#ffb800",
     lightBg: "#fffbeb",
+    link: WA_MAYOREO_LINK,
   },
 ];
 
@@ -95,7 +98,7 @@ export default function CategoriesSection() {
                   </ul>
 
                   <a
-                    href={WA_LINK}
+                    href={cat.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 font-bold text-sm py-3 rounded-xl transition-all hover:shadow-md hover:-translate-y-0.5"

@@ -4,7 +4,7 @@ import { CATALOG_LINK } from "@/lib/constants";
 // Catálogo DidacticosIQ – ya tenemos el link en constants
 // Los otros dos catálogos; actualiza el link cuando tengas el PDF real
 const EDUKARTE_LINK = CATALOG_LINK; // Reemplaza con el link real de Edukarte
-const EDUDAK_LINK = CATALOG_LINK;   // Reemplaza con el link real de Edudak
+const EDUDAK_LINK = "https://drive.google.com/file/d/1ANsKKvh6oe0Go4fuguvWA11M__TOxFls/view";
 
 const catalogs = [
   {
