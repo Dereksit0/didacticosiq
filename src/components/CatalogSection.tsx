@@ -9,23 +9,6 @@ const EDUDAK_LINK = "https://drive.google.com/file/d/1ANsKKvh6oe0Go4fuguvWA11M__
 
 const catalogs = [
   {
-    id: "edukarte",
-    brand: "Edukarte",
-    year: "2026",
-    tagline: "Material Educativo Creativo",
-    description:
-      "Descubre nuestra línea Edukarte con materiales enfocados en arte, creatividad y expresión para todas las edades.",
-    emoji: "🎨",
-    emojis: ["🖍️", "🎭", "🖌️", "📐", "🌈", "✏️"],
-    link: EDUKARTE_LINK,
-    gradient: "linear-gradient(160deg, #ff6b6b 0%, #ee5a24 100%)",
-    darkGradient: "linear-gradient(160deg, #c0392b 0%, #922b21 100%)",
-    accent: "#ff6b6b",
-    badge: "ARTE & CREATIVIDAD",
-    badgeColor: "#fff3cd",
-    badgeText: "#9c3a00",
-  },
-  {
     id: "edudak",
     brand: "Edudak",
     year: "2026",
@@ -58,6 +41,23 @@ const catalogs = [
     badge: "+500 PRODUCTOS",
     badgeColor: "#fff8e1",
     badgeText: "#7a5200",
+  },
+  {
+    id: "edukarte",
+    brand: "Edukarte",
+    year: "2026",
+    tagline: "Material Educativo Creativo",
+    description:
+      "Descubre nuestra línea Edukarte con materiales enfocados en arte, creatividad y expresión para todas las edades.",
+    emoji: "🎨",
+    emojis: ["🖍️", "🎭", "🖌️", "📐", "🌈", "✏️"],
+    link: EDUKARTE_LINK,
+    gradient: "linear-gradient(160deg, #ff6b6b 0%, #ee5a24 100%)",
+    darkGradient: "linear-gradient(160deg, #c0392b 0%, #922b21 100%)",
+    accent: "#ff6b6b",
+    badge: "ARTE & CREATIVIDAD",
+    badgeColor: "#fff3cd",
+    badgeText: "#9c3a00",
   },
 ];
 
