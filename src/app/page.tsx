@@ -9,6 +9,7 @@ import CustomProjectSection from "@/components/CustomProjectSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import SourcingSection from "@/components/SourcingSection";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <GallerySection />
         <BenefitsSection />
         <CustomProjectSection />
+        <SourcingSection />
         <ContactSection />
       </main>
       <Footer />

@@ -82,7 +82,7 @@ export default function HeroSection() {
             Material didáctico especializado para{" "}
             <strong className="text-white">todas las edades</strong> — escuelas, consultorios,
             terapeutas, padres de familia y público en general.
-            Mayoreo y menudeo con envíos a todo México.
+            Mayoreo y menudeo con envíos a todo México. ¡Si no encuentras lo que buscas, te lo conseguimos!
           </p>
 
           {/* CTAs */}
@@ -108,8 +108,8 @@ export default function HeroSection() {
           {/* Stats strip */}
           <div className="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-white/20">
             {[
-              { value: "500+", label: "Productos" },
-              { value: "15+", label: "Años de exp." },
+              { value: "+500", label: "Productos" },
+              { value: "+23", label: "Años de experiencia" },
               { value: "Todo MX", label: "Envíos nacionales" },
             ].map((s) => (
               <div key={s.label} className="text-center">

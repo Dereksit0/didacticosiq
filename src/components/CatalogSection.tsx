@@ -1,16 +1,15 @@
 import ScrollReveal from "./ScrollReveal";
-import MobileCarousel from "./MobileCarousel";
 import { CATALOG_LINK } from "@/lib/constants";
 
 // Catálogo DidacticosIQ – ya tenemos el link en constants
 // Los otros dos catálogos; actualiza el link cuando tengas el PDF real
-const EDUKARTE_LINK = "https://eduk-arte.wixsite.com/eduk-arte/geoplanos";
+const EDUKARTE_LINK = "https://6054acef-3ce5-4546-abe7-d3aa92677601.filesusr.com/ugd/8cbde4_ed58914008164b89a036194f4cecbff1.pdf";
 const EDUDAK_LINK = "https://drive.google.com/file/d/1ANsKKvh6oe0Go4fuguvWA11M__TOxFls/view";
 
 const catalogs = [
   {
     id: "edudak",
-    brand: "Edudak",
+    brand: "Edudak Fabrica",
     year: "2026",
     tagline: "Desarrollo Cognitivo",
     description:
@@ -44,7 +43,7 @@ const catalogs = [
   },
   {
     id: "edukarte",
-    brand: "Edukarte",
+    brand: "Edukarte Fabrica",
     year: "2026",
     tagline: "Material Educativo Creativo",
     description:
@@ -84,9 +83,9 @@ export default function CatalogSection() {
         </ScrollReveal>
 
         {/* Catalog grid */}
-        <MobileCarousel gapClass="gap-8" gridClass="sm:grid sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-8 sm:grid sm:grid-cols-2 lg:grid-cols-3">
           {catalogs.map((cat, idx) => (
-            <ScrollReveal key={cat.id} delay={idx * 120} className="min-w-[85vw] sm:min-w-0 snap-center shrink-0">
+            <ScrollReveal key={cat.id} delay={idx * 120} className="w-full">
               <a
                 href={cat.link}
                 target="_blank"
@@ -189,14 +188,14 @@ export default function CatalogSection() {
               </a>
             </ScrollReveal>
           ))}
-        </MobileCarousel>
+        </div>
 
         {/* Bottom text */}
         <ScrollReveal>
           <p className="text-center text-gray-400 text-sm mt-14">
             Material didáctico para{" "}
             <strong className="text-[#008180]">todas las edades</strong> —
-            bebés, niños, jóvenes y adultos. Más de 15 años apoyando la
+            bebés, niños, jóvenes y adultos. Más de 23 años apoyando la
             educación en México.
           </p>
         </ScrollReveal>

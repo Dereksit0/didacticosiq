@@ -8,10 +8,10 @@ const hours = [
 ];
 
 const contactItems = [
-  { icon: "📱", label: "WhatsApp Menudeo", value: "+52 220 179 2153", href: WA_LINK },
+  { icon: "📱", label: "WhatsApp Menudeo", value: "+52 220 179 2153", href: WA_LINK, target: "_blank" },
   { icon: "📞", label: "Teléfono Mayoreo", value: "222 231 4611", href: "tel:+522222314611" },
-  { icon: "📍", label: "Ubicación", value: "Ver en Google Maps", href: MAPS_LINK },
-  { icon: "📖", label: "Catálogo", value: "Descargar PDF 2026", href: CATALOG_LINK },
+  { icon: "📍", label: "Ubicación", value: "Ver en Google Maps", href: MAPS_LINK, target: "_blank" },
+  { icon: "📖", label: "Catálogo", value: "Ver catálogos", href: "#catalogo" },
 ];
 
 export default function ContactSection() {
@@ -132,8 +132,8 @@ export default function ContactSection() {
                     <a
                       key={item.label}
                       href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={item.target || "_self"}
+                      rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                       className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#eaf0ef] transition-colors group"
                     >
                       <span className="text-2xl">{item.icon}</span>

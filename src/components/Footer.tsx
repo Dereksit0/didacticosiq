@@ -11,7 +11,7 @@ const productLinks = [
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Catálogo", href: "#catalogo" },
+  { label: "Ver Catálogos", href: "#catalogo" },
   { label: "Categorías", href: "#categorias" },
   { label: "Nuestra Tienda", href: "#tienda" },
   { label: "Contacto", href: "#contacto" },

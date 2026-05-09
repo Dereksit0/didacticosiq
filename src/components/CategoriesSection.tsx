@@ -1,5 +1,4 @@
 import ScrollReveal from "./ScrollReveal";
-import MobileCarousel from "./MobileCarousel";
 import { WA_LINK, WA_MAYOREO_LINK } from "@/lib/constants";
 
 const categories = [
@@ -60,9 +59,9 @@ export default function CategoriesSection() {
         </ScrollReveal>
 
         {/* Cards */}
-        <MobileCarousel gapClass="gap-6" gridClass="md:grid md:grid-cols-3 lg:gap-8">
+        <div className="flex flex-col gap-6 md:grid md:grid-cols-3 lg:gap-8">
           {categories.map((cat, idx) => (
-            <ScrollReveal key={cat.title} delay={idx * 120} className="w-[85vw] max-w-[85vw] sm:w-[320px] sm:max-w-[320px] md:w-auto md:max-w-none shrink-0 snap-center h-full">
+            <ScrollReveal key={cat.title} delay={idx * 120} className="w-full h-full">
               <div
                 className="card-hover bg-white rounded-3xl overflow-hidden shadow-md h-full flex flex-col"
                 style={{ borderTop: `4px solid ${cat.accent}` }}
@@ -114,7 +113,7 @@ export default function CategoriesSection() {
               </div>
             </ScrollReveal>
           ))}
-        </MobileCarousel>
+        </div>
       </div>
     </section>
   );
