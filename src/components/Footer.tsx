@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { WA_LINK, CATALOG_LINK, MAPS_LINK } from "@/lib/constants";
 
+const EDUDAK = "/pdfs/edudak.pdf";
+
 const productLinks = [
-  "Material Montessori",
-  "Terapia Ocupacional",
-  "Material de Aula",
-  "Juegos de Patio",
-  "Mayoreo y Distribución",
+  { label: "Material Montessori",     href: `${EDUDAK}#page=103` },
+  { label: "Terapia Ocupacional",     href: `${EDUDAK}#page=94`  },
+  { label: "Material de Aula",        href: `${EDUDAK}#page=161` },
+  { label: "Juegos de Patio",         href: `${EDUDAK}#page=5`   },
+  { label: "Mayoreo y Distribución",  href: "#mayoreo-menudeo"   },
 ];
 
 const navLinks = [
@@ -87,14 +89,14 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {productLinks.map((item) => (
-                <li key={item}>
+                <li key={item.label}>
                   <a
-                    href={CATALOG_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={item.href}
+                    target={item.href.startsWith("#") ? undefined : "_blank"}
+                    rel={item.href.startsWith("#") ? undefined : "noopener noreferrer"}
                     className="text-white/65 text-sm hover:text-white transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </a>
                 </li>
               ))}
