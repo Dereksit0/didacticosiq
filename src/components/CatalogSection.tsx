@@ -4,7 +4,7 @@ import { CATALOG_LINK } from "@/lib/constants";
 // Catálogo DidacticosIQ – ya tenemos el link en constants
 // Los otros dos catálogos; actualiza el link cuando tengas el PDF real
 const EDUKARTE_LINK = "https://6054acef-3ce5-4546-abe7-d3aa92677601.filesusr.com/ugd/8cbde4_ed58914008164b89a036194f4cecbff1.pdf";
-const EDUDAK_LINK = "https://drive.google.com/file/d/1ANsKKvh6oe0Go4fuguvWA11M__TOxFls/view";
+const EDUDAK_LINK = "/pdfs/edudak.pdf";
 
 const catalogs = [
   {
@@ -178,7 +178,7 @@ export default function CatalogSection() {
 
                 {/* Back page shadow */}
                 <div
-                  className="absolute top-2 -right-3 -z-10 w-full rounded-2xl transition-transform group-hover:translate-x-1"
+                  className="catalog-back absolute top-2 -right-3 -z-10 w-full rounded-2xl transition-transform group-hover:translate-x-1"
                   style={{
                     background: cat.darkGradient,
                     transform: "perspective(900px) rotateY(-5deg)",

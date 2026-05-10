@@ -67,7 +67,6 @@ export default function WholesaleRetailSection() {
                 <ul className="space-y-3 mb-8">
                   {[
                     "✅ Precios preferenciales exclusivos",
-                    "✅ Facturación y crédito disponible",
                     "✅ Envíos a toda la república",
                     "✅ Asesor dedicado para tu cuenta",
                     "✅ Stock garantizado en todo momento",

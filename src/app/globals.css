@@ -149,6 +149,17 @@ body {
   transform: scale(1.08);
 }
 
+/* ── Catalog: remove 3-D tilt on mobile so cards don't appear right-shifted ── */
+@media (max-width: 639px) {
+  .catalog-book {
+    transform: none !important;
+    box-shadow: 8px 12px 28px rgba(0, 0, 0, 0.22) !important;
+  }
+  .catalog-back {
+    display: none;
+  }
+}
+
 /* ── Hide scrollbar for horizontal scrolling ── */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

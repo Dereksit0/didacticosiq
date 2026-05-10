@@ -34,6 +34,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${montserrat.variable} h-full antialiased`}>
+      <head>
+        {/* Prefetch catalogs in background so PDF opens instantly on click */}
+        <link rel="prefetch" href="/pdfs/didacticosiq.pdf" as="fetch" crossOrigin="anonymous" />
+        <link rel="prefetch" href="/pdfs/edudak.pdf" as="fetch" crossOrigin="anonymous" />
+        <link rel="prefetch" href="https://6054acef-3ce5-4546-abe7-d3aa92677601.filesusr.com/ugd/8cbde4_ed58914008164b89a036194f4cecbff1.pdf" />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

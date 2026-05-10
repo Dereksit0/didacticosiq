@@ -31,9 +31,9 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-5">
               <div className="w-11 h-11 bg-[#008180] rounded-xl flex items-center justify-center text-white font-black text-xl shadow">
                 D
@@ -45,7 +45,7 @@ export default function Footer() {
 
             <p className="text-white/65 leading-relaxed mb-6 max-w-sm text-sm">
               Distribuidora líder en material didáctico y juguetes educativos al
-              mayoreo. Apoyando la educación de México desde hace más de 15
+              mayoreo. Apoyando la educación de México desde hace más de +23
               años.
             </p>
 
@@ -101,7 +101,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Navigation + Contact */}
+          {/* Navigation */}
           <div>
             <h4 className="font-black text-[#ffb800] mb-5 uppercase text-xs tracking-widest">
               Navegación
@@ -119,6 +119,22 @@ export default function Footer() {
               ))}
             </ul>
 
+            {/* Contacto — visible solo en desktop dentro de esta columna */}
+            <div className="hidden lg:block">
+              <h4 className="font-black text-[#ffb800] mb-3 uppercase text-xs tracking-widest">
+                Contacto
+              </h4>
+              <ul className="space-y-1.5 text-white/65 text-sm">
+                <li>📱 Menudeo: +52 220 179 2153</li>
+                <li>📞 Mayoreo: 222 231 4611</li>
+                <li>🕐 Lun–Vie: 8:30am – 6pm</li>
+                <li>🕐 Sáb: 8:30am – 3pm</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Contacto — visible solo en móvil, cae en col izquierda justo debajo de Productos */}
+          <div className="lg:hidden">
             <h4 className="font-black text-[#ffb800] mb-3 uppercase text-xs tracking-widest">
               Contacto
             </h4>

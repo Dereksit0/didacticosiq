@@ -1,11 +1,8 @@
 import ScrollReveal from "./ScrollReveal";
 import { MAPS_LINK } from "@/lib/constants";
 
-// Catalog URLs — Google Drive PDFs go through /api/pdf proxy which serves them
-// with Content-Disposition: inline, forcing the browser's native PDF viewer to
-// open them. The native viewer (Chrome/Edge/Firefox) supports #page=N navigation.
-const EDUDAK_CATALOG = "/api/pdf?id=1ANsKKvh6oe0Go4fuguvWA11M__TOxFls";
-const DIDACTICOSIQ_CATALOG = "/api/pdf?id=1PxW4Jo3H-w0EuhjywuBlDC6at76Is4Ze";
+const EDUDAK_CATALOG = "/pdfs/edudak.pdf";
+const DIDACTICOSIQ_CATALOG = "/pdfs/didacticosiq.pdf";
 const EDUKARTE_CATALOG = "https://6054acef-3ce5-4546-abe7-d3aa92677601.filesusr.com/ugd/8cbde4_ed58914008164b89a036194f4cecbff1.pdf";
 
 const productCategories = [
@@ -187,7 +184,7 @@ const productCategories = [
     colorB: "#0e7490",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=35`,
+    link: `${EDUDAK_CATALOG}#page=5`,
   },
   {
     label: "Lectura y Escritura",
@@ -207,7 +204,7 @@ const productCategories = [
     colorB: "#4a044e",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=82`,
+    link: `${EDUDAK_CATALOG}#page=66`,
   },
   {
     label: "Matemáticas",
@@ -237,7 +234,7 @@ const productCategories = [
     colorB: "#7f1d1d",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=50`,
+    link: `${EDUDAK_CATALOG}#page=12`,
   },
   {
     label: "Inglés",
@@ -257,7 +254,7 @@ const productCategories = [
     colorB: "#b71c1c",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=18`,
+    link: `${EDUDAK_CATALOG}#page=31`,
   },
   {
     label: "Juego Simbólico",
@@ -267,7 +264,7 @@ const productCategories = [
     colorB: "#f57f17",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=42`,
+    link: `${EDUDAK_CATALOG}#page=61`,
   },
   {
     label: "Convivencia y Valores",
@@ -287,17 +284,17 @@ const productCategories = [
     colorB: "#01579b",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=78`,
+    link: `${EDUDAK_CATALOG}#page=79`,
   },
   {
-    label: "Danza y Expresión",
-    description: "Material para danza, expresión corporal y ritmo",
-    emoji: "💃",
+    label: "Expresión de Emociones",
+    description: "Emociones, sentimientos, autorregulación y expresión emocional",
+    emoji: "🫀",
     colorA: "#f48fb1",
     colorB: "#880e4f",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=87`,
+    link: `${EDUDAK_CATALOG}#page=12`,
   },
   {
     label: "Lengua de Señas",
@@ -307,7 +304,7 @@ const productCategories = [
     colorB: "#4527a0",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=91`,
+    link: `${EDUDAK_CATALOG}#page=92`,
   },
   {
     label: "Geografía e Historia",
@@ -317,7 +314,7 @@ const productCategories = [
     colorB: "#2e7d32",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=96`,
+    link: `${EDUDAK_CATALOG}#page=131`,
   },
   {
     label: "Vida Saludable",
@@ -347,7 +344,7 @@ const productCategories = [
     colorB: "#bf360c",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=125`,
+    link: `${EDUDAK_CATALOG}#page=45`,
   },
   {
     label: "Pensamiento Lógico",
@@ -367,7 +364,7 @@ const productCategories = [
     colorB: "#1a237e",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=155`,
+    link: `${EDUDAK_CATALOG}#page=159`,
   },
   {
     label: "Pizarrones y Tableros",
@@ -375,9 +372,9 @@ const productCategories = [
     emoji: "🖊️",
     colorA: "#b0bec5",
     colorB: "#263238",
-    colSpan: "col-span-1",
+    colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=163`,
+    link: `${EDUKARTE_CATALOG}#page=13`,
   },
   {
     label: "Recursos Docentes",
@@ -385,19 +382,9 @@ const productCategories = [
     emoji: "📋",
     colorA: "#ffe57f",
     colorB: "#ff6f00",
-    colSpan: "col-span-1",
-    image: "",
-    link: `${EDUDAK_CATALOG}#page=166`,
-  },
-  {
-    label: "Material de Evaluación",
-    description: "Rúbricas, portafolios y herramientas de evaluación formativa",
-    emoji: "📝",
-    colorA: "#cfd8dc",
-    colorB: "#37474f",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=170`,
+    link: `${EDUDAK_CATALOG}#page=166`,
   },
   {
     label: "Sillas y Mesas",
@@ -425,29 +412,9 @@ const productCategories = [
     emoji: "🍼",
     colorA: "#f8bbd9",
     colorB: "#ad1457",
-    colSpan: "col-span-1",
+    colSpan: "col-span-2 md:col-span-1",
     image: "",
     link: `${EDUDAK_CATALOG}#page=181`,
-  },
-  {
-    label: "Juguetes Sensoriales",
-    description: "Texturas, sonidos, colores y experiencias multisensoriales",
-    emoji: "🌈",
-    colorA: "#ffab91",
-    colorB: "#bf360c",
-    colSpan: "col-span-1 md:col-span-2",
-    image: "",
-    link: `${EDUDAK_CATALOG}#page=183`,
-  },
-  {
-    label: "Desarrollo Visual",
-    description: "Móviles, contrastes y estimulación visual para bebés",
-    emoji: "👁️",
-    colorA: "#e1bee7",
-    colorB: "#6a1b9a",
-    colSpan: "col-span-1 md:col-span-2",
-    image: "",
-    link: `${EDUDAK_CATALOG}#page=186`,
   },
   {
     label: "Uniformes y Batas",
