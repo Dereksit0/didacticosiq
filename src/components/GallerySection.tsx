@@ -1,6 +1,13 @@
 import ScrollReveal from "./ScrollReveal";
 import { MAPS_LINK } from "@/lib/constants";
 
+// Catalog URLs — Google Drive PDFs go through /api/pdf proxy which serves them
+// with Content-Disposition: inline, forcing the browser's native PDF viewer to
+// open them. The native viewer (Chrome/Edge/Firefox) supports #page=N navigation.
+const EDUDAK_CATALOG = "/api/pdf?id=1ANsKKvh6oe0Go4fuguvWA11M__TOxFls";
+const DIDACTICOSIQ_CATALOG = "/api/pdf?id=1QZwfOiraa9Cx6kozdybGau8DzEA6x28x";
+const EDUKARTE_CATALOG = "https://6054acef-3ce5-4546-abe7-d3aa92677601.filesusr.com/ugd/8cbde4_ed58914008164b89a036194f4cecbff1.pdf";
+
 const productCategories = [
   {
     label: "Material Didáctico y STEM",
@@ -9,7 +16,8 @@ const productCategories = [
     colorA: "#38bdf8",
     colorB: "#0369a1",
     colSpan: "col-span-1 md:col-span-2",
-    image: "", // <- Pon aquí tu imagen, ej: "/images/stem.jpg"
+    image: "",
+    link: `${EDUDAK_CATALOG}#page=103`,  // Saberes y Pensamiento Científico (includes STEM)
   },
   {
     label: "Educación Especial",
@@ -19,6 +27,7 @@ const productCategories = [
     colorB: "#6d28d9",
     colSpan: "col-span-1",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=94`,   // Ética section includes Educación Inclusiva/Especial
   },
   {
     label: "Recursos para el Salón",
@@ -28,6 +37,7 @@ const productCategories = [
     colorB: "#be185d",
     colSpan: "col-span-1",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=161`,  // Apoyos Didácticos y Logísticos section start
   },
   {
     label: "De lo Humano y lo Comunitario",
@@ -37,6 +47,7 @@ const productCategories = [
     colorB: "#c2410c",
     colSpan: "col-span-1",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=5`,    // De lo Humano y lo Comunitario section start
   },
   {
     label: "Lenguajes",
@@ -46,6 +57,7 @@ const productCategories = [
     colorB: "#047857",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=65`,   // Lenguajes section start
   },
   {
     label: "Saberes Científicos",
@@ -55,6 +67,7 @@ const productCategories = [
     colorB: "#4338ca",
     colSpan: "col-span-1",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=103`,  // Saberes y Pensamiento Científico
   },
   {
     label: "Ética, Naturaleza y Sociedad",
@@ -64,6 +77,7 @@ const productCategories = [
     colorB: "#0f766e",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=94`,   // Ética, Naturaleza y Sociedad section start
   },
   {
     label: "Mobiliario",
@@ -73,6 +87,7 @@ const productCategories = [
     colorB: "#b45309",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=173`,  // Mobiliario (mesas, sillas preescolares)
   },
   {
     label: "Juegos y Juguetes",
@@ -82,6 +97,7 @@ const productCategories = [
     colorB: "#b91c1c",
     colSpan: "col-span-1",
     image: "",
+    link: `${DIDACTICOSIQ_CATALOG}#page=3`,  // Juegos de Mesa y Memoria
   },
   {
     label: "Bebés",
@@ -91,6 +107,7 @@ const productCategories = [
     colorB: "#a16207",
     colSpan: "col-span-1",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=179`,  // Productos para Bebés section start
   },
   {
     label: "Habilidad Espacial",
@@ -100,6 +117,7 @@ const productCategories = [
     colorB: "#047857",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
+    link: `${EDUKARTE_CATALOG}#page=1`,  // Rompecabezas, Geoplanos, Tangram
   },
   {
     label: "Material Complementario",
@@ -109,6 +127,7 @@ const productCategories = [
     colorB: "#1d4ed8",
     colSpan: "col-span-1",
     image: "",
+    link: `${DIDACTICOSIQ_CATALOG}#page=12`, // Educación Financiera (Monedas y Billetes)
   },
   {
     label: "Música y Movimiento",
@@ -118,6 +137,7 @@ const productCategories = [
     colorB: "#7e22ce",
     colSpan: "col-span-1",
     image: "",
+    link: `${EDUDAK_CATALOG}#page=67`,   // Instrumentos musicales (maracas, güiros) in Lenguajes
   },
   {
     label: "Clásicos y Artesanales",
@@ -127,6 +147,7 @@ const productCategories = [
     colorB: "#be123c",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
+    link: `${DIDACTICOSIQ_CATALOG}#page=9`,  // Juego Tradicional y Artesanal
   },
   {
     label: "Uniformes y Batas",
@@ -136,6 +157,7 @@ const productCategories = [
     colorB: "#334155",
     colSpan: "col-span-2 md:col-span-4",
     image: "",
+    link: `${DIDACTICOSIQ_CATALOG}#page=14`, // Textil Escolar (Bata maestra + infantil)
   },
 ];
 
@@ -154,8 +176,8 @@ export default function GallerySection() {
               <span className="text-[#008180]">ESPACIO</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Explora todas nuestras categorías de productos. Puedes agregar
-              imágenes a cada sección en el futuro para mostrar tu inventario.
+              Explora todas nuestras categorías de productos. Haz clic en
+              cualquier categoría para ver el catálogo completo.
             </p>
           </div>
         </ScrollReveal>
@@ -163,9 +185,12 @@ export default function GallerySection() {
         {/* Categories grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {productCategories.map((item) => (
-            <div
+            <a
               key={item.label}
-              className={`${item.colSpan} gallery-cell group relative rounded-2xl overflow-hidden h-40 sm:h-52 cursor-pointer`}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${item.colSpan} gallery-cell group relative rounded-2xl overflow-hidden h-40 sm:h-52 cursor-pointer block`}
             >
               {/* Gradient bg or Image */}
               {item.image ? (
@@ -209,7 +234,7 @@ export default function GallerySection() {
                   {item.description}
                 </p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
