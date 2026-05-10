@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Google_Drive__read_file_content",
+      "WebFetch(domain:6054acef-3ce5-4546-abe7-d3aa92677601.filesusr.com)",
+      "Bash(python -c ' *)",
+      "Bash(node -e ' *)",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
