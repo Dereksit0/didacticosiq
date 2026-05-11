@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+  <title>Visor de Catálogo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; background: #e8eaed; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    body { display: flex; flex-direction: column; }
+
+    #toolbar {
+      flex-shrink: 0;
+      background: #004f4f;
+      color: white;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    #toolbar button {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    #toolbar button:active { background: rgba(255,255,255,0.35); }
+    #toolbar button:disabled { opacity: 0.3; pointer-events: none; }
+    #page-info { font-size: 13px; font-weight: 600; white-space: nowrap; min-width: 70px; text-align: center; }
+
+    #canvas-container {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 12px;
+    }
+    canvas {
+      max-width: 100%;
+      display: block;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      border-radius: 3px;
+      background: white;
+    }
+
+    #overlay {
+      position: absolute;
+      top: 48px; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: #e8eaed;
+    }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 4px solid rgba(0,129,128,0.2);
+      border-top-color: #008180;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #overlay p { font-size: 13px; color: #777; font-weight: 500; }
+    #overlay a { color: #008180; font-weight: 700; text-decoration: underline; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<div id="toolbar">
+  <button id="prev">&#8592; Anterior</button>
+  <span id="page-info">—</span>
+  <button id="next">Siguiente &#8594;</button>
+</div>
+
+<div id="canvas-container"></div>
+
+<div id="overlay">
+  <div class="spinner"></div>
+  <p>Cargando catálogo...</p>
+</div>
+
+<script>
+  var params   = new URLSearchParams(window.location.search);
+  var rawFile  = params.get('file') || '';
+  var initPage = Math.max(1, parseInt(params.get('page') || '1', 10));
+
+  if (!rawFile) {
+    document.getElementById('overlay').innerHTML = '<p>Error: no se especificó el archivo.</p>';
+  } else {
+    var s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    s.onload = initViewer;
+    s.onerror = function() {
+      document.getElementById('overlay').innerHTML =
+        '<p>Sin conexión a internet.</p><a href="' + rawFile + '" target="_blank">Abrir PDF →</a>';
+    };
+    document.head.appendChild(s);
+  }
+
+  function initViewer() {
+    // Worker via blob para evitar restricción cross-origin de Web Workers
+    var workerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(
+      new Blob(['importScripts("' + workerUrl + '");'], { type: 'application/javascript' })
+    );
+
+    var container  = document.getElementById('canvas-container');
+    var overlay    = document.getElementById('overlay');
+    var pageInfoEl = document.getElementById('page-info');
+    var prevBtn    = document.getElementById('prev');
+    var nextBtn    = document.getElementById('next');
+
+    var pdf         = null;
+    var currentPage = initPage;
+    var rendering   = false;
+    var canvas      = document.createElement('canvas');
+    container.appendChild(canvas);
+
+    function updateUI() {
+      pageInfoEl.textContent = currentPage + ' / ' + pdf.numPages;
+      prevBtn.disabled = currentPage <= 1;
+      nextBtn.disabled = currentPage >= pdf.numPages;
+    }
+
+    function renderPage(num) {
+      if (rendering) return;
+      rendering = true;
+      pdf.getPage(num).then(function(page) {
+        var containerW   = container.clientWidth - 24;
+        var baseViewport = page.getViewport({ scale: 1 });
+        var scale        = containerW / baseViewport.width;
+        var viewport     = page.getViewport({ scale: scale });
+
+        var ratio      = window.devicePixelRatio || 1;
+        canvas.width   = viewport.width  * ratio;
+        canvas.height  = viewport.height * ratio;
+        canvas.style.width  = viewport.width  + 'px';
+        canvas.style.height = viewport.height + 'px';
+
+        var ctx = canvas.getContext('2d');
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        container.scrollTop = 0;
+
+        return page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      }).then(function() {
+        rendering = false;
+        updateUI();
+      }).catch(function() { rendering = false; });
+    }
+
+    pdfjsLib.getDocument(rawFile).promise.then(function(pdfDoc) {
+      pdf = pdfDoc;
+      overlay.remove();
+      currentPage = Math.min(initPage, pdf.numPages);
+      renderPage(currentPage);
+    }).catch(function(err) {
+      overlay.innerHTML =
+        '<p>No se pudo cargar el PDF.</p><a href="' + rawFile + '" target="_blank">Abrir en nueva pestaña →</a>';
+      console.error(err);
+    });
+
+    prevBtn.onclick = function() {
+      if (!rendering && currentPage > 1) { currentPage--; renderPage(currentPage); }
+    };
+    nextBtn.onclick = function() {
+      if (!rendering && pdf && currentPage < pdf.numPages) { currentPage++; renderPage(currentPage); }
+    };
+  }
+</script>
+</body>
+</html>

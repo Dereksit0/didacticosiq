@@ -6,8 +6,16 @@ interface Props {
   brand: string;
 }
 
+function buildViewerSrc(link: string): string {
+  const [url, hash] = link.split("#");
+  const pageMatch = hash?.match(/page=(\d+)/);
+  const page = pageMatch ? pageMatch[1] : "1";
+  return `/pdfviewer.html?file=${encodeURIComponent(url)}&page=${page}`;
+}
+
 export default function PdfViewer({ link, brand }: Props) {
   const [loading, setLoading] = useState(true);
+  const src = buildViewerSrc(link);
 
   return (
     <div className="relative flex-1 overflow-hidden bg-gray-50" style={{ minHeight: "55vh" }}>
@@ -18,8 +26,8 @@ export default function PdfViewer({ link, brand }: Props) {
         </div>
       )}
       <iframe
-        key={link}
-        src={link}
+        key={src}
+        src={src}
         title={`Catálogo ${brand}`}
         className="w-full border-0"
         style={{ height: "65vh" }}
