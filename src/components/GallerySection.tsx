@@ -1,9 +1,11 @@
+"use client";
 import ScrollReveal from "./ScrollReveal";
+import { useCatalogModal } from "./CatalogModalProvider";
 import { MAPS_LINK } from "@/lib/constants";
 
 const EDUDAK_CATALOG = "/pdfs/edudak.pdf";
 const DIDACTICOSIQ_CATALOG = "/pdfs/didacticosiq.pdf";
-const EDUKARTE_CATALOG = "https://6054acef-3ce5-4546-abe7-d3aa92677601.filesusr.com/ugd/8cbde4_ed58914008164b89a036194f4cecbff1.pdf";
+const EDUKARTE_CATALOG = "/pdfs/edukarte.pdf";
 
 const productCategories = [
   {
@@ -14,7 +16,7 @@ const productCategories = [
     colorB: "#0369a1",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=103`,  // Saberes y Pensamiento Científico (includes STEM)
+    link: `${EDUDAK_CATALOG}#page=103`,
   },
   {
     label: "Educación Especial",
@@ -24,7 +26,7 @@ const productCategories = [
     colorB: "#6d28d9",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=94`,   // Ética section includes Educación Inclusiva/Especial
+    link: `${EDUDAK_CATALOG}#page=94`,
   },
   {
     label: "Recursos para el Salón",
@@ -34,7 +36,7 @@ const productCategories = [
     colorB: "#be185d",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=161`,  // Apoyos Didácticos y Logísticos section start
+    link: `${EDUDAK_CATALOG}#page=161`,
   },
   {
     label: "De lo Humano y lo Comunitario",
@@ -44,7 +46,7 @@ const productCategories = [
     colorB: "#c2410c",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=5`,    // De lo Humano y lo Comunitario section start
+    link: `${EDUDAK_CATALOG}#page=5`,
   },
   {
     label: "Lenguajes",
@@ -54,7 +56,7 @@ const productCategories = [
     colorB: "#047857",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=65`,   // Lenguajes section start
+    link: `${EDUDAK_CATALOG}#page=65`,
   },
   {
     label: "Saberes Científicos",
@@ -64,7 +66,7 @@ const productCategories = [
     colorB: "#4338ca",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=103`,  // Saberes y Pensamiento Científico
+    link: `${EDUDAK_CATALOG}#page=103`,
   },
   {
     label: "Ética, Naturaleza y Sociedad",
@@ -74,7 +76,7 @@ const productCategories = [
     colorB: "#0f766e",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=94`,   // Ética, Naturaleza y Sociedad section start
+    link: `${EDUDAK_CATALOG}#page=94`,
   },
   {
     label: "Mobiliario",
@@ -84,7 +86,7 @@ const productCategories = [
     colorB: "#b45309",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=173`,  // Mobiliario (mesas, sillas preescolares)
+    link: `${EDUDAK_CATALOG}#page=173`,
   },
   {
     label: "Juegos y Juguetes",
@@ -94,7 +96,7 @@ const productCategories = [
     colorB: "#b91c1c",
     colSpan: "col-span-1",
     image: "",
-    link: `${DIDACTICOSIQ_CATALOG}#page=3`,  // Juegos de Mesa y Memoria
+    link: `${DIDACTICOSIQ_CATALOG}#page=3`,
   },
   {
     label: "Bebés",
@@ -104,7 +106,7 @@ const productCategories = [
     colorB: "#a16207",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=179`,  // Productos para Bebés section start
+    link: `${EDUDAK_CATALOG}#page=179`,
   },
   {
     label: "Habilidad Espacial",
@@ -114,7 +116,7 @@ const productCategories = [
     colorB: "#047857",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${EDUKARTE_CATALOG}#page=1`,  // Rompecabezas, Geoplanos, Tangram
+    link: `${EDUKARTE_CATALOG}#page=1`,
   },
   {
     label: "Material Complementario",
@@ -134,7 +136,7 @@ const productCategories = [
     colorB: "#7e22ce",
     colSpan: "col-span-1",
     image: "",
-    link: `${EDUDAK_CATALOG}#page=67`,   // Instrumentos musicales (maracas, güiros) in Lenguajes
+    link: `${EDUDAK_CATALOG}#page=67`,
   },
   {
     label: "Clásicos y Artesanales",
@@ -144,7 +146,7 @@ const productCategories = [
     colorB: "#be123c",
     colSpan: "col-span-1 md:col-span-2",
     image: "",
-    link: `${DIDACTICOSIQ_CATALOG}#page=9`,  // Juego Tradicional y Artesanal
+    link: `${DIDACTICOSIQ_CATALOG}#page=9`,
   },
   {
     label: "Material para Maquetas",
@@ -429,6 +431,8 @@ const productCategories = [
 ];
 
 export default function GallerySection() {
+  const { openModal } = useCatalogModal();
+
   return (
     <section id="tienda" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -452,12 +456,16 @@ export default function GallerySection() {
         {/* Categories grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {productCategories.map((item) => (
-            <a
+            <button
               key={item.label}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${item.colSpan} gallery-cell group relative rounded-2xl overflow-hidden h-40 sm:h-52 cursor-pointer block`}
+              onClick={() =>
+                openModal({
+                  brand: item.label,
+                  link: item.link,
+                  gradient: `linear-gradient(135deg, ${item.colorA} 0%, ${item.colorB} 100%)`,
+                })
+              }
+              className={`${item.colSpan} gallery-cell group relative rounded-2xl overflow-hidden h-40 sm:h-52 cursor-pointer text-left`}
             >
               {/* Gradient bg or Image */}
               {item.image ? (
@@ -474,7 +482,7 @@ export default function GallerySection() {
                 />
               )}
 
-              {/* Dark overlay on hover (always show a bit if image is used for text contrast) */}
+              {/* Dark overlay on hover */}
               <div
                 className={`absolute inset-0 transition-all duration-300 ${
                   item.image
@@ -483,7 +491,7 @@ export default function GallerySection() {
                 }`}
               />
 
-              {/* Content (Emoji if no image) */}
+              {/* Emoji */}
               {!item.image && (
                 <div className="relative h-full flex flex-col items-center justify-center p-4 text-white">
                   <span className="text-5xl sm:text-6xl mb-4 drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -501,7 +509,7 @@ export default function GallerySection() {
                   {item.description}
                 </p>
               </div>
-            </a>
+            </button>
           ))}
         </div>
 

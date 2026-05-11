@@ -1,4 +1,4 @@
-import { WA_LINK, CATALOG_LINK } from "@/lib/constants";
+import { WA_LINK } from "@/lib/constants";
 
 export default function HeroSection() {
   return (

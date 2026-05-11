@@ -1,5 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
-import { WA_LINK, MAPS_LINK, CATALOG_LINK } from "@/lib/constants";
+import { WA_LINK, MAPS_LINK } from "@/lib/constants";
 
 const hours = [
   { day: "Lunes – Viernes", time: "8:30 am – 6:00 pm" },

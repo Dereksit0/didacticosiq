@@ -1,5 +1,13 @@
+"use client";
 import ScrollReveal from "./ScrollReveal";
+import { useCatalogModal } from "./CatalogModalProvider";
 import { WA_LINK, WA_MAYOREO_LINK } from "@/lib/constants";
+
+const EDUDAK = "/pdfs/edudak.pdf";
+const EDUDAK_GRADIENT = "linear-gradient(160deg, #4db8ff 0%, #0070c0 100%)";
+
+interface CatalogItem { brand: string; link: string; gradient: string }
+interface CategoryItem { label: string; modal?: CatalogItem }
 
 const categories = [
   {
@@ -8,10 +16,15 @@ const categories = [
     subtitle: "Directores y Docentes",
     description:
       "Mobiliario escolar ergonómico, juegos de patio, material de aula y recursos visuales para enriquecer cada espacio de aprendizaje.",
-    items: ["Mobiliario de aula", "Juegos de patio", "Material Montessori", "Recursos visuales"],
+    items: [
+      { label: "Mobiliario de aula",   modal: { brand: "Mobiliario de Aula",   link: `${EDUDAK}#page=173`, gradient: EDUDAK_GRADIENT } },
+      { label: "Juegos de patio",      modal: { brand: "Juegos de Patio",      link: `${EDUDAK}#page=5`,   gradient: EDUDAK_GRADIENT } },
+      { label: "Material Montessori",  modal: { brand: "Material Montessori",  link: `${EDUDAK}#page=103`, gradient: EDUDAK_GRADIENT } },
+      { label: "Recursos visuales",    modal: { brand: "Recursos Visuales",    link: `${EDUDAK}#page=166`, gradient: EDUDAK_GRADIENT } },
+    ] as CategoryItem[],
     accent: "#ff4757",
     lightBg: "#fff5f5",
-    link: WA_LINK,
+    ctaLink: WA_LINK,
   },
   {
     emoji: "🧠",
@@ -19,10 +32,15 @@ const categories = [
     subtitle: "Profesionales de la Salud",
     description:
       "Herramientas especializadas para Psicopedagogía, Terapia Ocupacional, Terapia de Lenguaje y Estimulación Temprana.",
-    items: ["Terapia Ocupacional", "Psicopedagogía", "Terapia de Lenguaje", "Estimulación Temprana"],
+    items: [
+      { label: "Terapia Ocupacional",   modal: { brand: "Terapia Ocupacional",   link: `${EDUDAK}#page=94`,  gradient: EDUDAK_GRADIENT } },
+      { label: "Psicopedagogía",        modal: { brand: "Psicopedagogía",        link: `${EDUDAK}#page=94`,  gradient: EDUDAK_GRADIENT } },
+      { label: "Terapia de Lenguaje",   modal: { brand: "Terapia de Lenguaje",   link: `${EDUDAK}#page=65`,  gradient: EDUDAK_GRADIENT } },
+      { label: "Estimulación Temprana", modal: { brand: "Estimulación Temprana", link: `${EDUDAK}#page=181`, gradient: EDUDAK_GRADIENT } },
+    ] as CategoryItem[],
     accent: "#4db8ff",
     lightBg: "#f0f8ff",
-    link: WA_LINK,
+    ctaLink: WA_LINK,
   },
   {
     emoji: "📦",
@@ -30,14 +48,21 @@ const categories = [
     subtitle: "Distribuidores y Empresas",
     description:
       "Planes especiales para distribuidores y compras por volumen. Precios preferenciales para papelerías, librerías y tiendas.",
-    items: ["Precios de mayoreo", "Pedidos por volumen", "Asesoría comercial", "Facturación"],
+    items: [
+      { label: "Precios de mayoreo"  },
+      { label: "Pedidos por volumen" },
+      { label: "Asesoría comercial"  },
+      { label: "Facturación"         },
+    ] as CategoryItem[],
     accent: "#ffb800",
     lightBg: "#fffbeb",
-    link: WA_MAYOREO_LINK,
+    ctaLink: WA_MAYOREO_LINK,
   },
 ];
 
 export default function CategoriesSection() {
+  const { openModal } = useCatalogModal();
+
   return (
     <section id="categorias" className="py-20 bg-[#eaf0ef]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -87,18 +112,28 @@ export default function CategoriesSection() {
 
                   <ul className="space-y-2 mb-6 flex-1">
                     {cat.items.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-sm">
+                      <li key={item.label} className="flex items-center gap-2 text-sm">
                         <span
                           className="w-2 h-2 rounded-full flex-shrink-0"
                           style={{ backgroundColor: cat.accent }}
                         />
-                        <span className="text-gray-700 font-medium">{item}</span>
+                        {item.modal ? (
+                          <button
+                            onClick={() => openModal(item.modal!)}
+                            className="text-gray-700 font-medium text-left underline underline-offset-2 decoration-gray-300 hover:decoration-gray-600 hover:text-gray-900 transition-colors inline-flex items-center gap-1"
+                          >
+                            {item.label}
+                            <span className="text-gray-400 text-[11px]" aria-hidden="true">→</span>
+                          </button>
+                        ) : (
+                          <span className="text-gray-700 font-medium">{item.label}</span>
+                        )}
                       </li>
                     ))}
                   </ul>
 
                   <a
-                    href={cat.link}
+                    href={cat.ctaLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 font-bold text-sm py-3 rounded-xl transition-all hover:shadow-md hover:-translate-y-0.5"

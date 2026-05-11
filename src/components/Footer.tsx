@@ -1,25 +1,29 @@
+"use client";
 import Link from "next/link";
-import { WA_LINK, CATALOG_LINK, MAPS_LINK } from "@/lib/constants";
+import { WA_LINK, MAPS_LINK } from "@/lib/constants";
+import { useCatalogModal } from "./CatalogModalProvider";
 
 const EDUDAK = "/pdfs/edudak.pdf";
+const EDUDAK_GRADIENT = "linear-gradient(160deg, #4db8ff 0%, #0070c0 100%)";
 
 const productLinks = [
-  { label: "Material Montessori",     href: `${EDUDAK}#page=103` },
-  { label: "Terapia Ocupacional",     href: `${EDUDAK}#page=94`  },
-  { label: "Material de Aula",        href: `${EDUDAK}#page=161` },
-  { label: "Juegos de Patio",         href: `${EDUDAK}#page=5`   },
-  { label: "Mayoreo y Distribución",  href: "#mayoreo-menudeo"   },
+  { label: "Material Montessori",    brand: "Material Montessori",   link: `${EDUDAK}#page=103` },
+  { label: "Terapia Ocupacional",    brand: "Terapia Ocupacional",   link: `${EDUDAK}#page=94`  },
+  { label: "Material de Aula",       brand: "Material de Aula",      link: `${EDUDAK}#page=161` },
+  { label: "Juegos de Patio",        brand: "Juegos de Patio",       link: `${EDUDAK}#page=5`   },
 ];
 
 const navLinks = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Ver Catálogos", href: "#catalogo" },
-  { label: "Categorías", href: "#categorias" },
+  { label: "Inicio",         href: "#inicio" },
+  { label: "Ver Catálogos",  href: "#catalogo" },
+  { label: "Categorías",     href: "#categorias" },
   { label: "Nuestra Tienda", href: "#tienda" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Contacto",       href: "#contacto" },
 ];
 
 export default function Footer() {
+  const { openModal } = useCatalogModal();
+
   return (
     <footer style={{ background: "#002e2e" }} className="text-white">
       {/* Top wave */}
@@ -47,8 +51,7 @@ export default function Footer() {
 
             <p className="text-white/65 leading-relaxed mb-6 max-w-sm text-sm">
               Distribuidora líder en material didáctico y juguetes educativos al
-              mayoreo. Apoyando la educación de México desde hace más de +23
-              años.
+              mayoreo. Apoyando la educación de México desde hace más de +23 años.
             </p>
 
             <div className="flex gap-3">
@@ -61,12 +64,11 @@ export default function Footer() {
               >
                 <WhatsAppIcon />
               </a>
+              {/* 📚 → scroll to catalog section */}
               <a
-                href={CATALOG_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#catalogo"
                 className="bg-[#008180] text-white w-11 h-11 rounded-xl flex items-center justify-center hover:bg-[#006665] transition-colors shadow-md"
-                aria-label="Catálogo"
+                aria-label="Ver catálogos"
               >
                 <span className="text-lg">📚</span>
               </a>
@@ -90,16 +92,22 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {productLinks.map((item) => (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
-                    target={item.href.startsWith("#") ? undefined : "_blank"}
-                    rel={item.href.startsWith("#") ? undefined : "noopener noreferrer"}
-                    className="text-white/65 text-sm hover:text-white transition-colors"
+                  <button
+                    onClick={() => openModal({ brand: item.brand, link: item.link, gradient: EDUDAK_GRADIENT })}
+                    className="text-white/65 text-sm hover:text-white transition-colors text-left"
                   >
                     {item.label}
-                  </a>
+                  </button>
                 </li>
               ))}
+              <li>
+                <a
+                  href="#mayoreo-menudeo"
+                  className="text-white/65 text-sm hover:text-white transition-colors"
+                >
+                  Mayoreo y Distribución
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -121,7 +129,6 @@ export default function Footer() {
               ))}
             </ul>
 
-            {/* Contacto — visible solo en desktop dentro de esta columna */}
             <div className="hidden lg:block">
               <h4 className="font-black text-[#ffb800] mb-3 uppercase text-xs tracking-widest">
                 Contacto
@@ -135,7 +142,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contacto — visible solo en móvil, cae en col izquierda justo debajo de Productos */}
           <div className="lg:hidden">
             <h4 className="font-black text-[#ffb800] mb-3 uppercase text-xs tracking-widest">
               Contacto
@@ -149,7 +155,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-white/40 text-sm">
             © 2026 DidacticosIQ. Todos los derechos reservados.

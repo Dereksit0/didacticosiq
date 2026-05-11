@@ -11,7 +11,12 @@
       "PowerShell(Invoke-WebRequest -Uri \"https://drive.usercontent.google.com/download?id=1PxW4Jo3H-w0EuhjywuBlDC6at76Is4Ze&export=download&confirm=t\" -OutFile \"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\didacticosiq.pdf\" -UseBasicParsing; $f = Get-Item \"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\didacticosiq.pdf\"; \"Downloaded: $\\([math]::Round\\($f.Length/1MB,1\\)\\) MB\")",
       "PowerShell(Invoke-WebRequest -Uri \"https://drive.usercontent.google.com/download?id=1ANsKKvh6oe0Go4fuguvWA11M__TOxFls&export=download&confirm=t\" -OutFile \"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\edudak.pdf\" -UseBasicParsing; $f = Get-Item \"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\edudak.pdf\"; \"Downloaded: $\\([math]::Round\\($f.Length/1MB,1\\)\\) MB\")",
       "PowerShell($bytes = [System.IO.File]::ReadAllBytes\\(\"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\edudak.pdf\"\\); $header = [System.Text.Encoding]::ASCII.GetString\\($bytes[0..7]\\); \"Header: $header\"; \"Size: $\\([math]::Round\\($bytes.Length/1MB,1\\)\\) MB\")",
-      "PowerShell($bytes = [System.IO.File]::ReadAllBytes\\(\"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\didacticosiq.pdf\"\\); [System.Text.Encoding]::ASCII.GetString\\($bytes[0..7]\\))"
+      "PowerShell($bytes = [System.IO.File]::ReadAllBytes\\(\"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\didacticosiq.pdf\"\\); [System.Text.Encoding]::ASCII.GetString\\($bytes[0..7]\\))",
+      "Bash(Copy-Item \"C:\\\\Users\\\\derek\\\\Downloads\\\\DidacticosIQ\\\\Catalogos\\\\Edudak.pdf\" \"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\edudak.pdf\" -Force)",
+      "Bash(Copy-Item \"C:\\\\Users\\\\derek\\\\Downloads\\\\DidacticosIQ\\\\Catalogos\\\\DidacticosIQ.pdf\" \"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\didacticosiq.pdf\" -Force)",
+      "Bash(Copy-Item \"C:\\\\Users\\\\derek\\\\Downloads\\\\DidacticosIQ\\\\Catalogos\\\\Edukarte.pdf\" \"C:\\\\Users\\\\derek\\\\Documents\\\\didacticosiq\\\\public\\\\pdfs\\\\edukarte.pdf\" -Force)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(Remove-Item *)"
     ]
   }
 }
